@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :family_id %><br>
-    <%= f.number_field :family_id %>
+    <%= select "person", "family_id", @families.collect { |p| [ p.lastname, p.id ] } %>
   </div>
   <div class="actions">
     <%= f.submit %>

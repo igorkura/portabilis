@@ -1,3 +1,3 @@
 class Person < ActiveRecord::Base
-	belongs_to :families
+  belongs_to :family
 end

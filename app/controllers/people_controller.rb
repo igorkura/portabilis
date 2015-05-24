@@ -1,10 +1,15 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_families, only: [:new, :edit, :create, :update]
 
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    @people = if params[:id].nil?
+      Person.all
+    else
+      Person.where(family_id: params[:id])
+    end
   end
 
   # GET /people/1
@@ -65,6 +70,10 @@ class PeopleController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_person
       @person = Person.find(params[:id])
+    end
+
+    def set_families
+      @families = Family.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

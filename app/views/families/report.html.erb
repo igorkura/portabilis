@@ -1,0 +1,27 @@
+<h1>Famílias</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Renda</th>
+      <th>Situação de pobreza</th>
+      <th>Situação de extrema pobreza</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @families.each do |family|  %>
+      <tr>
+        <td><%= family.lastname %></td>
+        <td><%= number_to_currency family.income %></td>
+        <td><%= family.poverty_situation? ? "Sim" : "Não" %></td>
+        <td><%= family.extreme_poverty_situation? ? "Sim" : "Não" %></td>
+        <td><%= link_to 'Pessoas', people_path+"?id=#{family.id}" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Nova família', new_family_path %>

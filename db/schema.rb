@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523142312) do
+ActiveRecord::Schema.define(version: 20150523143142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "families", force: true do |t|
+  create_table "families", force: :cascade do |t|
     t.string   "lastname"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "people", force: true do |t|
+  create_table "people", force: :cascade do |t|
     t.string   "name"
     t.decimal  "income"
     t.string   "role"
@@ -31,4 +31,5 @@ ActiveRecord::Schema.define(version: 20150523142312) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "people", "families"
 end
